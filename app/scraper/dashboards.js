@@ -28,6 +28,8 @@ function getCostPerTransaction($){
 }
 
 function getTransactionsPerYear($) {
+  console.log($('#transactions-per-year').find(
+    '.single-stat-headline .impact-number'));
   return $('#transactions-per-year').find(
     '.single-stat-headline .impact-number');
 }

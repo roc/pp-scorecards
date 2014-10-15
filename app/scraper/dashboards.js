@@ -28,10 +28,9 @@ function getCostPerTransaction($){
 }
 
 function getTransactionsPerYear($) {
-  console.log($('#transactions-per-year').find(
-    '.single-stat-headline .impact-number'));
-  return $('#transactions-per-year').find(
-    '.single-stat-headline .impact-number');
+  console.log($('#transactions-per-year').find('.impact-number abbr').attr('title').replace(/,/gi, '')
+  );
+  return $('#transactions-per-year').find('.impact-number abbr').attr('title').replace(/,/gi, '');
 }
 
 module.exports.get_module_values = function (dashboard) {
@@ -42,13 +41,15 @@ module.exports.get_module_values = function (dashboard) {
       $ = cheerio.load(html);
 
       dashboard['modules'].forEach(function (module) {
+
+        console.log('module', module['slug']);
+
         if(module['slug'] === 'cost-per-transaction'){
           module['cost-per-transaction'] = getCostPerTransaction($);
         }
         if(module['slug'] === 'transactions-per-year'){
           module['transactions-per-year'] = getTransactionsPerYear($);
         }
-        console.log('module slug', module['slug']);
         // console.log(module[module['slug']]);
       });
     }

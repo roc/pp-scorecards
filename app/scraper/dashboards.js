@@ -16,14 +16,39 @@ module.exports.get_dashboard = function (url, callback) {
   });
 };
 
+
+// Return cost per transaction
+function getCostPerTransaction($){
+  console.log(
+    parseFloat(
+      $('#cost-per-transaction').find('.stat .impact-number strong').first().text().trim().replace('£','')
+      ).toFixed(2)
+  );
+  return parseFloat($('#cost-per-transaction').find('.stat .impact-number strong').first().text().trim().replace('£','')).toFixed(2);
+}
+
+function getTransactionsPerYear($) {
+  return $('#transactions-per-year').find(
+    '.single-stat-headline .impact-number');
+}
+
 module.exports.get_module_values = function (dashboard) {
-  console.log('getting', dashboard['slug']);
+  console.log('getting', 'https://www.gov.uk/performance/'+dashboard['slug']);
   request('https://www.gov.uk/performance/' + dashboard['slug'], function(err, response, html) {
     if (err) throw err;
     if (!err) {
-      console.log(html);
       $ = cheerio.load(html);
-      console.log($);
+
+      dashboard['modules'].forEach(function (module) {
+        if(module['slug'] === 'cost-per-transaction'){
+          module['cost-per-transaction'] = getCostPerTransaction($);
+        }
+        if(module['slug'] === 'transactions-per-year'){
+          module['transactions-per-year'] = getTransactionsPerYear($);
+        }
+        console.log('module slug', module['slug']);
+        // console.log(module[module['slug']]);
+      });
     }
   });
 };

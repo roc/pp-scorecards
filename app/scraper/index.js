@@ -56,22 +56,28 @@ function getDashboardWithModules (json) {
 
 
 var dashboardDir = '/Users/ralphcowling/govuk/scorecards/data/dashboards/';
-fs.readdir(dashboardDir, function (err, files) {
-    if(err) throw err;
 
-    files.forEach( function (file, i) {
-        if(i<1){
-          logger.log('Reading ' + file);
-          fs.readFile(dashboardDir+file, 'utf-8', function (err, data) {
-            if (err) throw err;
-            var json = JSON.parse(data);
-            var dashboardWithModules = getDashboardWithModules(json);
-            dashboardScraper.get_module_values(dashboardWithModules);
-          });
-          i++;
-        }
-    });
+// fs.readdir(dashboardDir, function (err, files) {
+//     if(err) throw err;
 
- });
+//     files.forEach( function (file, i) {
+//         if(i<1){
+//           logger.log('Reading ' + file);
+//           fs.readFile(dashboardDir+file, 'utf-8', function (err, data) {
+//             if (err) throw err;
+//             var json = JSON.parse(data);
+//             var dashboardWithModules = getDashboardWithModules(json);
+//             dashboardScraper.get_module_values(dashboardWithModules);
+//           });
+//           i++;
+//         }
+//     });
 
+//  });
 
+fs.readFile(dashboardDir+'tax-disc.json', 'utf-8', function (err, data) {
+  if (err) throw err;
+  var json = JSON.parse(data);
+  var dashboardWithModules = getDashboardWithModules(json);
+  dashboardScraper.get_module_values(dashboardWithModules);
+});

@@ -1,5 +1,64 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+
+    .container
+      .header
+        h3= title
+      .jumbotron
+        h1
+          a(href='') Renew vehicle tax (tax disc)
+        hr
+        // Cost
+        div
+          h2 Costs
+          p
+            | Renew vehicle tax (tax disc) is a
+            a(href='') very high volume transaction
+            | , processing around
+            span.alert-warning.p2 44.6m per year
+            | .
+          p
+            | It is one of the
+            a(href='') highest costing transactions in government
+            |  at
+            a.alert-danger.p2 &pound;45.9m per year
+          p
+            | The average cost per transaction is at the lower end of the scale, at
+            span.alert-success.p2 &pound;1.03 per transaction
+            | .
+        hr
+        // Usage
+        div
+          h2 Digital outlook
+          p
+            | Renew vehicle tax (tax disc) is a transaction that
+            a(href='') is primarily digital
+            | , with
+            span.alert-info.p2 61%
+            |  of transactions taking place online.
+          p
+            | The online service is one of the slower ones in government, with
+            a(href='') page load time
+            |  getting as high as
+            span.alert-warning.p2 2.93 seconds
+            |  in some cases. Renew vehicle tax (tax disc) has one of the highest user satisfaction ratings of any service online, with a
+            span.alert-success.p2 94%
+            |  positivity rating.
+        hr
+        // Summary
+        div
+          h2 Summary
+          ul.summary
+            li Low cost per transaction
+            li High cost in total
+            li High usage (488 users online now)
+      .footer
+        p &copy; Ralph 2014
+    // /container
+    // IE10 viewport hack for Surface/desktop Windows 8 bug
+    // <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    script(src='lib/js/jquery-2.1.1.min.js')
+    script(src='lib/js/typeahead.jquery.min.js')
+    script(src='lib/js/bloodhound.min.js')
+    script(src='app/main.js')
